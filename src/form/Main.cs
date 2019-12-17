@@ -42,26 +42,17 @@ namespace CarServiceSystem.src.form
                 {
                     dataGridView1.Rows.Add(client.LastName, client.FirstName, client.MiddleName);
                 }
-                //List<string> tableColumns = new List<string>(3) { "FirstName", "LastName", "Inn" };
-                //Dictionary<string, string> map = new Dictionary<string, string>(3)
-                //{
-                //    ["LastName"] = "Фамилия",
-                //    ["FirstName"] = "Имя",
-                //    ["Inn"] = "Инн"
-                //};
-                
-                //TableBuilder.BuildTable(clients, tabControl2, map, new DataGridViewCellEventHandler(CellClickClient));
                 if (clients != null && clients.Count > 0)
                 {
                     currentClient = clients[0];
                     updateClientInfo();
-                    updateOrderTable();
+                    updateOrderTable(currentClient);
                 }
                 else
                 {
                     currentClient = null;
                     currentOrder = null;
-                    updateOrderTable();
+                    updateOrderTable(currentClient);
                 }
             }
             catch (NullReferenceException e)
@@ -84,8 +75,9 @@ namespace CarServiceSystem.src.form
             new CreateOrder(this).Show();
         }
 
-        public void updateOrderTable()
+        public void updateOrderTable(Client client)
         {
+            currentClient = client;
             List<OrderRepair> orderRepairs = currentClient?.OrderRepairList;
             try
             {
@@ -94,26 +86,14 @@ namespace CarServiceSystem.src.form
                 {
                     dataGridView2.Rows.Add(order.Timestamp, order.Price);
                 }
-                //List<string> tableColumns = new List<string>(3) { "FirstName", "LastName", "Inn" };
-                //Dictionary<string, string> map = new Dictionary<string, string>(3)
-                //{
-                //    ["LastName"] = "Фамилия",
-                //    ["FirstName"] = "Имя",
-                //    ["Inn"] = "Инн"
-                //};
-
-                //TableBuilder.BuildTable(clients, tabControl2, map, new DataGridViewCellEventHandler(CellClickClient));
-                if (clients != null && clients.Count > 0)
+                if (orderRepairs != null && orderRepairs.Count > 0)
                 {
-                    //currentClient = clients[0];
-                    //updateClientInfo();
-                    //updateClientOrders(currentClient);
+                    currentOrder = orderRepairs[0];
+                    updateOrderInfo();
                 }
                 else
                 {
-                    //currentClient = null;
-                    //currentOrder = null;
-                    //updateClientOrders(currentClient);
+                    currentOrder = null;
                 }
             }
             catch (NullReferenceException e)
@@ -132,7 +112,7 @@ namespace CarServiceSystem.src.form
         {
             currentClient = clients[e.RowIndex];
             updateClientInfo();
-            updateOrderTable();
+            updateOrderTable(currentClient);
         }
 
         private void CellClickOrder(object sender, DataGridViewCellEventArgs e)

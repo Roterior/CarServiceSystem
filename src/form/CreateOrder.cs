@@ -7,6 +7,7 @@ namespace CarServiceSystem.src.form
 {
     public partial class CreateOrder : Form
     {
+        private readonly IClientService service = ClientServiceImpl.GetService();
         private readonly IOrderRepairService orderService = OrderRepairServiceImpl.GetService();
         private readonly Main main;
 
@@ -23,7 +24,7 @@ namespace CarServiceSystem.src.form
             maker.Text = "Марка " + car.Maker;
             model.Text = "Модель " + car.Model;
             releaseYear.Text = "Год выпуска " + car.ReleaseYear.ToString();
-            status.Text = "Поломана жизнью";
+            status.Text = "Статус Поломана жизнью";
             description.Text = car.Description;
         }
 
@@ -34,9 +35,12 @@ namespace CarServiceSystem.src.form
                 Status = "Ремонт",
                 Timestamp = DateTimeOffset.Now,
                 Price = description.Text.Length * 1000,
-                ClientId = Main.currentClient.Id
+                ClientId = Main.currentClient.Id,
+                Description = description.Text
             });
-            //main.updateOrderTable();
+            Client client = service.GetById(Main.currentClient.Id);
+            main.updateOrderTable(client);
+            Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -46,9 +50,12 @@ namespace CarServiceSystem.src.form
                 Status = "Диагностика",
                 Timestamp = DateTimeOffset.Now,
                 Price = 500,
-                ClientId = Main.currentClient.Id
+                ClientId = Main.currentClient.Id,
+                Description = description.Text
             });
-            //main.updateOrderTable();
+            Client client = service.GetById(Main.currentClient.Id);
+            main.updateOrderTable(client);
+            Close();
         }
     }
 }
