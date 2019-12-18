@@ -1,22 +1,29 @@
 ﻿using CarServiceSystem.src.entity;
 using CarServiceSystem.src.service;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CarServiceSystem.src.form
 {
-    public partial class CreateOrder : Form
+    public partial class CreateOrderDiagnose : Form
     {
         private readonly IClientService service = ClientServiceImpl.GetService();
         private readonly IOrderRepairService orderService = OrderRepairServiceImpl.GetService();
         private readonly Main main;
 
-        public CreateOrder()
+        public CreateOrderDiagnose()
         {
             InitializeComponent();
             LoadClientCar();
         }
-        public CreateOrder(Main main) : this() => this.main = main;
+        public CreateOrderDiagnose(Main main) : this() => this.main = main;
 
         private void LoadClientCar()
         {
@@ -28,13 +35,13 @@ namespace CarServiceSystem.src.form
             description.Text = car.Description;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             orderService.Create(new OrderRepair
             {
-                Status = "Диагностика",
+                Status = "Ремонт",
                 Timestamp = DateTimeOffset.Now,
-                Price = 500,
+                Price = description.Text.Length * 1000,
                 ClientId = Main.currentClient.Id,
                 Description = description.Text
             });

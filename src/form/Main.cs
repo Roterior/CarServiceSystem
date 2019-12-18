@@ -1,4 +1,5 @@
 ﻿using CarServiceSystem.src.entity;
+using CarServiceSystem.src.service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ namespace CarServiceSystem.src.form
 {
     public partial class Main : Form
     {
+        private readonly IClientService service = ClientServiceImpl.GetService();
         public static Client currentClient;
         private OrderRepair currentOrder;
         private List<Client> clients;
@@ -20,6 +22,13 @@ namespace CarServiceSystem.src.form
         public Main()
         {
             InitializeComponent();
+            if (currentClient is null)
+            {
+                button2.Enabled = false;
+                button5.Enabled = false;
+                button4.Enabled = false;
+                button6.Enabled = false;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -63,6 +72,18 @@ namespace CarServiceSystem.src.form
 
         private void updateClientInfo()
         {
+            button5.Enabled = true;
+            button6.Enabled = true;
+            if (currentClient.CarClientList is null || currentClient.CarClientList.Count <= 0)
+            {
+                button2.Enabled = false;
+                button4.Enabled = false;
+            }
+            else
+            {
+                button2.Enabled = true;
+                button4.Enabled = true;
+            }
             passportNum.Text = "Номер паспорта " + currentClient.PassportNumber;
             passportSeries.Text = "Серия паспорта " + currentClient.PassportSeries;
             inn.Text = "ИНН " + currentClient.Inn;
@@ -110,15 +131,41 @@ namespace CarServiceSystem.src.form
 
         private void CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            currentClient = clients[e.RowIndex];
-            updateClientInfo();
-            updateOrderTable(currentClient);
+            if (e.RowIndex > 0)
+            {
+                currentClient = clients[e.RowIndex];
+                updateClientInfo();
+                updateOrderTable(currentClient);
+            }
         }
 
         private void CellClickOrder(object sender, DataGridViewCellEventArgs e)
         {
-            currentOrder = currentClient.OrderRepairList[e.RowIndex];
+            if (e.RowIndex > 0)
+            {
+                currentOrder = currentClient.OrderRepairList[e.RowIndex];
+                updateOrderInfo();
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            service.Delete(currentClient);
+            clients.Remove(currentClient);
+            currentClient = null;
+            updateClientTable(clients);
+            updateClientInfo();
             updateOrderInfo();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            new CreateOrderDiagnose(this).Show();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            new EditClient(this).Show();
         }
     }
 }

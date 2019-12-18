@@ -1,6 +1,6 @@
 ﻿namespace CarServiceSystem.src.form
 {
-    partial class CreateOrder
+    partial class CreateOrderDiagnose
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.description = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -39,15 +39,15 @@
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button2
+            // button1
             // 
-            this.button2.Location = new System.Drawing.Point(229, 175);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(99, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Диагностика";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button1.Location = new System.Drawing.Point(204, 169);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(96, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Ремонт";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox1
             // 
@@ -59,8 +59,8 @@
             this.groupBox1.Controls.Add(this.maker);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(316, 157);
-            this.groupBox1.TabIndex = 2;
+            this.groupBox1.Size = new System.Drawing.Size(288, 157);
+            this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Данные автомобиля клиента";
             // 
@@ -69,7 +69,7 @@
             this.description.Location = new System.Drawing.Point(6, 91);
             this.description.Multiline = true;
             this.description.Name = "description";
-            this.description.Size = new System.Drawing.Size(304, 60);
+            this.description.Size = new System.Drawing.Size(276, 60);
             this.description.TabIndex = 5;
             // 
             // label5
@@ -117,18 +117,18 @@
             this.maker.TabIndex = 0;
             this.maker.Text = "Марка";
             // 
-            // CreateOrder
+            // CreateOrderDiagnose
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(339, 204);
+            this.ClientSize = new System.Drawing.Size(309, 199);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.MaximizeBox = false;
-            this.Name = "CreateOrder";
+            this.Name = "CreateOrderDiagnose";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Создание заказа на ремонт";
+            this.Text = "Диагностика";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -136,13 +136,13 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox description;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label status;
         private System.Windows.Forms.Label releaseYear;
         private System.Windows.Forms.Label model;
         private System.Windows.Forms.Label maker;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label status;
-        private System.Windows.Forms.TextBox description;
     }
 }

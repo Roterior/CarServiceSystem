@@ -10,6 +10,7 @@ namespace CarServiceSystem.src.service
 {
     internal interface IClientService : ICrudService<Client, Guid>
     {
+        void Delete(Client client);
         List<Client> GetByFilter(FilterClient filter);
     }
 }

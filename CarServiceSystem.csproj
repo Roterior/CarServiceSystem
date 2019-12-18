@@ -71,6 +71,18 @@
     <Compile Include="src\form\CreateOrder.Designer.cs">
       <DependentUpon>CreateOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\form\CreateOrderDiagnose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\form\CreateOrderDiagnose.Designer.cs">
+      <DependentUpon>CreateOrderDiagnose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\form\EditClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\form\EditClient.Designer.cs">
+      <DependentUpon>EditClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\form\Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +117,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\form\CreateOrder.resx">
       <DependentUpon>CreateOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\form\CreateOrderDiagnose.resx">
+      <DependentUpon>CreateOrderDiagnose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\form\EditClient.resx">
+      <DependentUpon>EditClient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\form\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

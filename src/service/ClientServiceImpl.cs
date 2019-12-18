@@ -23,6 +23,12 @@ namespace CarServiceSystem.src.service
             return entity;
         }
 
+        public void Delete(Client client)
+        {
+            context.Client.Remove(client);
+            context.SaveChanges();
+        }
+
         public List<Client> GetByFilter(FilterClient filter)
         {
             IQueryable<Client> query = context.Client

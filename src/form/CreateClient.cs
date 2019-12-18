@@ -43,6 +43,7 @@ namespace CarServiceSystem.src.form
                 Model = model.Text,
                 Description = description.Text
             });
+            client.CarClientList = new List<CarClient>(1) { car };
             if (!releaseYear.Text.Equals("")) car.ReleaseYear = int.Parse(releaseYear.Text);
             if (!inn.Text.Equals("")) client.Inn = int.Parse(inn.Text);
             main.updateClientTable(new List<Client>(1) { client });
